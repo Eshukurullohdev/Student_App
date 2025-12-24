@@ -13,3 +13,11 @@ class Courses(models.Model):
         return self.title
     
     
+class Lesson(models.Model):
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE, related_name='lessons')
+    title = models.CharField(max_length=255)
+    video_url = models.URLField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.course.title} - {self.title}"
