@@ -41,3 +41,22 @@ class LessonListView(generics.ListAPIView):
     def get_queryset(self):
         course_id = self.kwargs['course_id']
         return Lesson.objects.filter(course_id=course_id)
+    
+    
+from .models import Assignment
+from .serializers import AssignmentSerializer
+
+# Teacher vazifa yaratadi
+class AssignmentCreateView(generics.CreateAPIView):
+    queryset = Assignment.objects.all()
+    serializer_class = AssignmentSerializer
+    permission_classes = [IsAuthenticated, IsTeacher]
+
+# Student + Teacher vazifalarni ko‘radi
+class AssignmentListView(generics.ListAPIView):
+    serializer_class = AssignmentSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        course_id = self.kwargs['course_id']
+        return Assignment.objects.filter(course_id=course_id)

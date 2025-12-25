@@ -13,3 +13,19 @@ class LessonSerializer(serializers.ModelSerializer):
         model = Lesson
         fields = ('id', 'course', 'title', 'video_url', 'created_at')
         read_only_fields = ('created_at',)
+        
+        
+from .models import Assignment
+
+class AssignmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Assignment
+        fields = (
+            'id',
+            'course',
+            'title',
+            'description',
+            'deadline',
+            'created_at'
+        )
+        read_only_fields = ('created_at',)

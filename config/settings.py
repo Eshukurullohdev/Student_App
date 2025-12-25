@@ -29,8 +29,10 @@ INSTALLED_APPS = [
     
     'users',
     'courses',
+    'submissions',
     'rest_framework',
     'corsheaders',
+    
 ]
 
 MIDDLEWARE = [
